@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
@@ -53,6 +52,7 @@ fun ProductDetailScreen(
         ProductDetailContent(
             product = product,
             modifier = Modifier.padding(paddingValues = paddingValues),
+            addCart = { CartRepository.addOne(product = product) },
         )
     }
 }
@@ -61,6 +61,7 @@ fun ProductDetailScreen(
 private fun ProductDetailContent(
     product: Product,
     modifier: Modifier = Modifier,
+    addCart: () -> Unit,
 ) {
     val context = LocalContext.current
 
@@ -68,7 +69,6 @@ private fun ProductDetailContent(
         DefaultImage(
             modifier =
                 modifier
-                    .wrapContentWidth()
                     .aspectRatio(1f),
             contentScale = ContentScale.Crop,
             imageUrl = product.imageUrl,
@@ -116,8 +116,11 @@ private fun ProductDetailContent(
                     color = Color.White,
                 ),
             colors = ButtonDefaults.buttonColors(Blue50),
-            modifier = Modifier.fillMaxWidth().height(54.dp),
-            onClick = { CartRepository.addOne(product = product) },
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .height(54.dp),
+            onClick = addCart,
         )
     }
 }
