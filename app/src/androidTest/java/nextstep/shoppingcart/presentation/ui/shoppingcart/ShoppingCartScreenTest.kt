@@ -17,13 +17,11 @@ class ShoppingCartScreenTest {
     val composeTestRule = createComposeRule()
 
     private lateinit var product: Product
-    private lateinit var actions: List<ShoppingCartAction>
 
     @Before
     fun setUp() {
         product = Product(id = 1, name = "product", price = 1000, imageUrl = "")
         CartRepository.addOne(product)
-        actions = emptyList()
         composeTestRule.setContent {
             ShoppingCartScreen(onBack = {})
         }
