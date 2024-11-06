@@ -87,6 +87,8 @@ private fun ShoppingCartContent(
     action: (ShoppingCartAction) -> Unit,
 ) {
     val context = LocalContext.current
+    val totalPrice =
+        rememberSaveable(cartItems) { CartRepository.totalPrice.currency(context = context) }
 
     Box(modifier = modifier.fillMaxSize()) {
         ShoppingCartLazyColumn(
@@ -96,9 +98,7 @@ private fun ShoppingCartContent(
 
         DefaultTextButton(
             text =
-                stringResource(R.string.order_title).format(
-                    CartRepository.totalPrice.currency(context = context),
-                ),
+                stringResource(R.string.order_title).format(totalPrice),
             style =
                 TextStyle(
                     fontSize = 20.sp,
