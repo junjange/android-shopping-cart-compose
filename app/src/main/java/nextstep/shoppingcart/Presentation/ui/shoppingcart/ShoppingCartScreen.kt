@@ -32,14 +32,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil3.compose.AsyncImage
 import nextstep.shoppingcart.data.model.CartItem
 import nextstep.shoppingcart.data.repository.CartRepository
 import nextstep.shoppingcart.data.repository.ProductRepository
@@ -47,6 +45,7 @@ import nextstep.shoppingcart.presentation.common.currency
 import nextstep.shoppingcart.presentation.component.BackButtonTopBar
 import nextstep.shoppingcart.presentation.component.CartItemCounter
 import nextstep.shoppingcart.presentation.component.DefaultIconButton
+import nextstep.shoppingcart.presentation.component.DefaultImage
 import nextstep.shoppingcart.presentation.component.DefaultTextButton
 import nextstep.shoppingcart.presentation.ui.theme.Blue50
 import nextstep.shoppingcart.presentation.ui.theme.Gray10
@@ -200,14 +199,13 @@ private fun ShoppingCartItemContent(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            AsyncImage(
+            DefaultImage(
                 modifier =
                     Modifier
                         .weight(1f)
                         .height(84.dp),
-                model = cartItem.product.imageUrl,
+                imageUrl = cartItem.product.imageUrl,
                 contentDescription = null,
-                error = painterResource(R.drawable.ic_launcher_background),
             )
 
             Spacer(modifier = Modifier.width(26.dp))
